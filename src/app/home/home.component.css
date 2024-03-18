@@ -1,0 +1,19 @@
+
+.header-margin{
+  margin-top: 100px;
+}
+.row-display{
+  display: flex;
+}
+.card-button{
+  min-height: 150px;
+}
+.row{
+  background-color: aqua;
+}
+.wrapper{
+  justify-content: center;
+}
+.col-md-6{
+  justify-content: center;
+}
