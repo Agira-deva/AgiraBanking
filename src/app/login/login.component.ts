@@ -33,7 +33,7 @@ loginForm: any;
             console.log(res);
             if (res.responseCode === 'Login Success') {
               alert('Login Success');
-              this.router.navigateByUrl('/dashboard');
+              this.router.navigateByUrl('/home');
             } else {
               alert(res.responseCode);
               alert(res.responseMessage);
