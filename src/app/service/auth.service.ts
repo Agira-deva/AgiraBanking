@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  private authToken: string | null = null;
+  private token: string | null = null;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -14,20 +14,20 @@ export class AuthService {
     return this.httpClient.post('http://localhost:8080/api/user/login', data);
   }
   isLoggedIn(): boolean {
-    return localStorage.getItem('token')!=null;;
+    return sessionStorage.getItem('token') != null;
   }
 
   setAuthToken(token: string): void {
-    this.authToken = token;
-    localStorage.setItem('authToken', token);
+    this.token = token;
+    sessionStorage.setItem('token', token);
   }
 
   getAuthToken(): string | null {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   clearAuthToken(): void {
-    this.authToken = null;
-    localStorage.removeItem('authToken');
+    this.token = null;
+    sessionStorage.removeItem('token');
   }
 }

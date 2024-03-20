@@ -13,11 +13,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private service: AuthService, private router: Router) {}
-  canActivate() {
+  canActivate():boolean {
     if (this.service.isLoggedIn()) {
       return true;
+
     } else {
-      this.router.navigateByUrl('/login');
+      this.router.navigate(['login']);
       return false;
     }
   }

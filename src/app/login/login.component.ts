@@ -45,7 +45,11 @@ export class LoginComponent implements OnInit {
         console.log(res);
         if (res.responseCode === 'Login Success') {
           this.responsedata = res.responseMessage;
-          localStorage.setItem('token', this.responsedata);
+          sessionStorage.setItem('token', this.responsedata);
+          sessionStorage.setItem(
+            'accountNumber',
+            res.accountInfo.accountNumber
+          );
           console.log(this.responsedata);
           this.router.navigate(['/home']);
         } else {

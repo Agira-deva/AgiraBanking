@@ -1,6 +1,6 @@
-import { AuthService } from './../service/auth.service';
 import { Component } from '@angular/core';
 import { AccountService } from '../service/account.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-account',
@@ -12,21 +12,25 @@ export class AccountComponent {
   balanceInfo: any;
   errorMessage!: string;
 
-  constructor(private balanceService: AccountService,private authService:AuthService) {}
+  constructor(private balanceService: AccountService, private authService: AuthService) {}
 
   onSubmit(): void {
-    if(this.authService.isLoggedIn()){
+    const storedAccountNumber = sessionStorage.getItem('accountNumber');
+    if (storedAccountNumber) {
+      this.accountNumber = storedAccountNumber;
       this.balanceService.balanceEnquiry(this.accountNumber).subscribe(
         (response) => {
-            this.balanceInfo = response.accountInfo;
-            this.errorMessage = ''
-
-      },
-  (error: { error: { message: string } }) => { 
-          error?.error?.message || 'An unexpected error occurred.';
-        this.balanceInfo = null;
-      }
-    );
+          this.balanceInfo = response.accountInfo;
+          this.errorMessage = '';
+        },
+        (error: { error: { message: string } }) => {
+          this.errorMessage =  'An unexpected error occurred while fetching balance.';
+          this.balanceInfo = null;
+        }
+      );
+    } else {
+      this.errorMessage = 'Account number not found in session storage.';
+      this.balanceInfo = null;
+    }
   }
-}
 }

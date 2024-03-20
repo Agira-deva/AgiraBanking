@@ -12,6 +12,10 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { TransferMoneyComponent } from './transfer-money/transfer-money.component';
 import { AuthGuard } from './guard/auth.guard';
+import {
+  TokenInterceptorProviders,
+  TokenInterceptorService,
+} from './service/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,7 @@ import { AuthGuard } from './guard/auth.guard';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, TokenInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
