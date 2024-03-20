@@ -1,44 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
-interface Signup {
-  EmailId: string;
-  Password: string;
-  firstName: string;
-  lastName: string;
-  otherName: string;
-  gender: string;
-  address: string;
-  stateOfOrigin: string;
-  phoneNumber: string;
-  alternativePhoneNumber: string;
-}
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
 })
+@Injectable({ providedIn: 'root' })
 export class SignupComponent {
+  reactiveForms: FormGroup;
 
-  signUpObj: Signup = {
-    EmailId: '',
-    Password: '',
-    firstName: '',
-    lastName: '',
-    otherName: '',
-    gender: '',
-    address: '',
-    stateOfOrigin: '',
-    phoneNumber: '',
-    alternativePhoneNumber: ''
-  };
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private formBuilder: FormBuilder
+  ) {
+    this.reactiveForms = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      otherName: [''],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      gender: ['', Validators.required],
+      address: [''],
+      stateOfOrigin: [''],
+      phoneNumber: ['', Validators.required],
+      alternativePhoneNumber: [''],
+    });
+  }
 
-  constructor(private http: HttpClient, private router: Router) {}
-
-  onSignup(): void {
-    this.http.post<any>('http://localhost:8080/api/user/', this.signUpObj)
+  onSubmit(): void {
+    this.reactiveForms.markAllAsTouched();
+    this.http
+      .post<any>('http://localhost:8080/api/user/', this.reactiveForms.value)
       .subscribe({
         next: (res: any) => {
           console.log(res);
@@ -53,7 +49,7 @@ export class SignupComponent {
         error: (err: any) => {
           console.error('An error occurred:', err);
           alert('An error occurred. Please try again later.');
-        }
+        },
       });
   }
 }

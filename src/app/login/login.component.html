@@ -2,11 +2,11 @@
   <div class="container">
     <div class="login-box">
       <h2>Login</h2>
-      <form action="#">
+      <form [formGroup]="loginForm">
         <div class="input-box">
           <input
             type="email"
-            [(ngModel)]="loginObj.EmailId"
+            formControlName="EmailId"
             name="EmailId"
             required
           />
@@ -15,20 +15,21 @@
         <div class="input-box">
           <input
             type="password"
-            [(ngModel)]="loginObj.Password"
+            formControlName="Password"
             name="Password"
             required
           />
           <label>Password</label>
         </div>
 
-        <button type="submit" class="btn" (click)="onLogin()">Login</button>
+        <button type="submit" class="btn" (click)="onSubmit()">Login</button>
 
         <div class="container">
-          <h4>Don't have an account? <a [routerLink]="'/signup'" class="anc">signup</a></h4>
-      </div>
-
-
+          <h4>
+            Don't have an account?
+            <a [routerLink]="'/signup'" class="anc">signup</a>
+          </h4>
+        </div>
       </form>
     </div>
   </div>

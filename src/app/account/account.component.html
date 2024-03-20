@@ -1,0 +1,21 @@
+<div>
+  <h1>Balance Enquiry</h1>
+  <form (ngSubmit)="onSubmit()">
+    <label for="accountNumber">Account Number:</label>
+    <input
+      type="text"
+      id="accountNumber"
+      name="accountNumber"
+      [(ngModel)]="accountNumber"
+      required
+    />
+    <button type="submit">Submit</button>
+  </form>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="balanceInfo">
+    <h2>Account Info</h2>
+    <p>Account Number: {{ balanceInfo.accountNumber }}</p>
+    <p>Account Name: {{ balanceInfo.accountName }}</p>
+    <p>Account Balance: {{ balanceInfo.accountBalance }}</p>
+  </div>
+</div>
