@@ -1,0 +1,37 @@
+.transfer-money-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.transfer-money-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+.button{
+  color: aliceblue;
+}
+
+label {
+
+  font-weight: bold;
+}
+
+input[type='text'],
+input[type='number'] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}

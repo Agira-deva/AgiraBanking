@@ -11,7 +11,7 @@ describe('TransactionHistoryComponent', () => {
       declarations: [TransactionHistoryComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(TransactionHistoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

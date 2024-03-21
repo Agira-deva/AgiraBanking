@@ -1,4 +1,11 @@
-<div class="transfer-money-container">
+<div class="transfer-money-container"
+[ngStyle]="{
+  'background-image': 'url(./assets/istockphoto-1382730753-612x612.jpg)',
+  'background-repeat': 'no-repeat',
+  'background-size': 'cover'
+}">
+.
+
   <h2>Transfer Money</h2>
   <form [formGroup]="transferForm" (ngSubmit)="onTransfer()">
     <div class="form-group">
@@ -18,7 +25,7 @@
         Amount must be greater than or equal to 0.
       </div>
     </div>
-    <button type="submit" [disabled]="!transferForm.valid">Transfer</button>
+    <button class="button" type="submit" [disabled]="!transferForm.valid">Transfer</button>
   </form>
   <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
 </div>

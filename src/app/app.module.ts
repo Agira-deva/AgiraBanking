@@ -27,7 +27,7 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     HomeComponent,
     TransferMoneyComponent,
     AccountComponent,
-    TransactionHistoryComponent
+    TransactionHistoryComponent,
   ],
   imports: [
     BrowserModule,

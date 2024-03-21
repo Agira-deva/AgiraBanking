@@ -4,9 +4,10 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './account/account.component';
-import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+
 import { TransferMoneyComponent } from './transfer-money/transfer-money.component';
 import { AuthGuard } from './guard/auth.guard';
+import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 
 const routes: Routes = [
   {
