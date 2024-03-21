@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { transferService } from '../service/transaction.service';
 
 @Component({
   selector: 'app-transaction-history',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './transaction-history.component.css'
 })
 export class TransactionHistoryComponent {
-
+  
 }

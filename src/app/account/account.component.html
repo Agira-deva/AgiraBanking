@@ -6,5 +6,9 @@
     <p><strong>Account Number:</strong> {{ balanceInfo.accountNumber }}</p>
     <p><strong>Account Name:</strong> {{ balanceInfo.accountName }}</p>
     <p><strong>Account Balance:</strong> ${{ balanceInfo.accountBalance }}</p>
+    <div class="button-container">
+   <button> <a [routerLink]="'/transaction-history'">Transaction History</a></button>
+   <button><a [routerLink]="'/transfer-money'">Transfer Money</a></button>
+</div>
   </div>
 </div>

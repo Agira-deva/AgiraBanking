@@ -16,6 +16,7 @@ import {
   TokenInterceptorProviders,
   TokenInterceptorService,
 } from './service/token-interceptor.service';
+import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {
     HomeComponent,
     TransferMoneyComponent,
     AccountComponent,
+    TransactionHistoryComponent
   ],
   imports: [
     BrowserModule,
