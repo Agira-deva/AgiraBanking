@@ -17,6 +17,8 @@ import {
   TokenInterceptorService,
 } from './service/token-interceptor.service';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+import { TransactionviewComponent } from './transactionview/transactionview.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     TransferMoneyComponent,
     AccountComponent,
     TransactionHistoryComponent,
+    TransactionviewComponent,
+
   ],
   imports: [
     BrowserModule,

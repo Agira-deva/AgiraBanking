@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, tap } from 'rxjs';
 import { Transaction } from '../Interface/history';
+import { Observable, catchError, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HistoryService {
-  private apiUrl = 'http://localhost:8080/bankStatement'; // Update the API URL
+export class TransactionviewService {
+
+  private apiUrl = 'http://localhost:8080/bankStatement';
 
   constructor(private http: HttpClient) {}
 

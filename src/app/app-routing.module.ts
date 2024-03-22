@@ -8,6 +8,7 @@ import { AccountComponent } from './account/account.component';
 import { TransferMoneyComponent } from './transfer-money/transfer-money.component';
 import { AuthGuard } from './guard/auth.guard';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+import { TransactionviewComponent } from './transactionview/transactionview.component';
 
 const routes: Routes = [
   {
@@ -27,8 +28,9 @@ const routes: Routes = [
 
   {
     path: 'signup',
+    pathMatch: 'full',
     component: SignupComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'account',
@@ -36,13 +38,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'transaction',
+    path: 'transactionhistory',
     component: TransactionHistoryComponent,
     canActivate: [AuthGuard],
   },
   {
     path: 'transfermoney',
     component: TransferMoneyComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'transferview',
+    component: TransactionviewComponent,
     canActivate: [AuthGuard],
   },
 ];

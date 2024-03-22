@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { HistoryService } from '../service/history.service';
 import { Transaction } from '../Interface/history';
+import { TransactionviewService } from '../service/transactionview.service';
 
 @Component({
-  selector: 'app-transaction-history',
-  templateUrl: './transaction-history.component.html',
-  styleUrls: ['./transaction-history.component.css']
+  selector: 'app-transactionview',
+  templateUrl: './transactionview.component.html',
+  styleUrls: ['./transactionview.component.css'],
 })
-export class TransactionHistoryComponent implements OnInit {
-
+export class TransactionviewComponent implements OnInit {
   transactions: Transaction[] = [];
   accountNumber: string = '';
   startDate: string = '';
   endDate: string = '';
 
-  constructor(private transactionService: HistoryService) {}
+  constructor(private transactionService: TransactionviewService) {}
 
   ngOnInit(): void {
     const accountNumberFromStorage = sessionStorage.getItem('accountNumber');
@@ -47,5 +46,4 @@ export class TransactionHistoryComponent implements OnInit {
         );
     }
   }
-
 }

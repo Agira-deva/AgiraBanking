@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Injectable({ providedIn: 'root' })
 export class SignupComponent {
   reactiveForms: FormGroup;
+  isSubmitting = false; // Flag to track form submission status
 
   constructor(
     private router: Router,
@@ -32,6 +33,11 @@ export class SignupComponent {
   }
 
   onSubmit(): void {
+    if (this.isSubmitting) {
+      return; // Prevent multiple form submissions
+    }
+
+    this.isSubmitting = true;
     this.reactiveForms.markAllAsTouched();
     this.http
       .post<any>('http://localhost:8080/api/user/', this.reactiveForms.value)
@@ -50,6 +56,9 @@ export class SignupComponent {
           console.error('An error occurred:', err);
           alert('An error occurred. Please try again later.');
         },
+        complete: () => {
+          this.isSubmitting = false; // Reset submission flag after request completes
+        }
       });
   }
 }
