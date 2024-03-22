@@ -12,7 +12,7 @@ export class HistoryService {
   constructor(private http: HttpClient) {}
 
   getTransactionsByDateRange(accountNumber: string, startDate: string, endDate: string): Observable<Transaction[]> {
-    const url = `${this.apiUrl}/history?accountNumber=${accountNumber}&startDate=${startDate}&endDate=${endDate}`;
+    const url = `${this.apiUrl}/pdf?accountNumber=${accountNumber}&startDate=${startDate}&endDate=${endDate}`;
     return this.http.get<Transaction[]>(url).pipe(
       tap(data => console.log('Received data:', data)),
       catchError(error => {

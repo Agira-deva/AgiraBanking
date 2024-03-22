@@ -18,6 +18,10 @@ import {
 } from './service/token-interceptor.service';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 import { TransactionviewComponent } from './transactionview/transactionview.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { BrowserPlatformLocation } from '@angular/common';
+import { ɵBrowserAnimationBuilder } from '@angular/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -39,8 +43,11 @@ import { TransactionviewComponent } from './transactionview/transactionview.comp
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
+
   ],
-  providers: [AuthGuard, TokenInterceptorProviders],
+  providers: [AuthGuard, TokenInterceptorProviders,ToastrService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 const headers = new HttpHeaders({
   'content-type': 'application/json',
 });
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private fb: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -51,9 +53,12 @@ export class LoginComponent implements OnInit {
             res.accountInfo.accountNumber
           );
           console.log(this.responsedata);
+          this.toastr.success(
+            "login success"
+          );
           this.router.navigate(['/home']);
         } else {
-          alert('Invalid Credentials');
+          this.toastr.error('Invalid Credentials');
         }
       });
     }
