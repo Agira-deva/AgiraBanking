@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { transferService } from '../service/transaction.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-transfer-money',
@@ -16,7 +17,7 @@ export class TransferMoneyComponent implements OnInit {
   errorMessage: string = '';
   transferForm!: FormGroup; // Initialize with '!' to indicate it will be defined in ngOnInit
 
-  constructor(private fb: FormBuilder, private transferService: transferService) {}
+  constructor(private fb: FormBuilder, private transferService: transferService,private toastr: ToastrService) {}
 
   ngOnInit(): void {
     // Initialize the transfer form using FormBuilder
@@ -36,14 +37,16 @@ export class TransferMoneyComponent implements OnInit {
       this.transferService.transferMoney(transferRequest).subscribe(
         (response: any) => {
           console.log('Transfer successful:', response);
+          this.toastr.success('Transfer successful');
           this.transferForm.reset(); // Clear the transfer form after successful transfer
         },
         (error: { error: { message: string } }) => {
-          this.errorMessage = 'An error occurred during the transfer.';
+          this.toastr.error("n error occurred during the transfer.")
         }
       );
     } else {
-      this.errorMessage = 'Please fill in all required fields correctly.';
+    //   this.errorMessage = 'Please fill in all required fields correctly.';
+    this.toastr.error("Please fill in all required fields correctly.");
     }
   }
 }

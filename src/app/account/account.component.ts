@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AccountService } from '../service/account.service';
 import { AuthService } from '../service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-account',
@@ -12,7 +13,7 @@ export class AccountComponent {
   balanceInfo: any;
   errorMessage!: string;
 
-  constructor(private balanceService: AccountService, private authService: AuthService) {}
+  constructor(private balanceService: AccountService, private authService: AuthService,private toastr:ToastrService) {}
 
   onSubmit(): void {
     const storedAccountNumber = sessionStorage.getItem('accountNumber');
@@ -22,9 +23,11 @@ export class AccountComponent {
         (response) => {
           this.balanceInfo = response.accountInfo;
           this.errorMessage = '';
+          this.toastr.success('Balance enquiry fetched successfully');
         },
         (error: { error: { message: string } }) => {
-          this.errorMessage =  'An unexpected error occurred while fetching balance.';
+          this.toastr.error("An unexpected error occurred while fetching balance.");
+          // this.errorMessage =  'An unexpected error occurred while fetching balance.';
           this.balanceInfo = null;
         }
       );

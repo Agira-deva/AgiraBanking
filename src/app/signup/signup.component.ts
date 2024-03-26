@@ -2,6 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +17,8 @@ export class SignupComponent {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.reactiveForms = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -45,7 +47,8 @@ export class SignupComponent {
         next: (res: any) => {
           console.log(res);
           if (res.responseCode === 'Account has been successfully created') {
-            alert('Account created successfully');
+            // alert('Account created successfully');
+            this.toastr.success("Account created successfully")
             this.router.navigateByUrl('/login');
           } else {
             alert(res.responseCode);
@@ -54,7 +57,8 @@ export class SignupComponent {
         },
         error: (err: any) => {
           console.error('An error occurred:', err);
-          alert('An error occurred. Please try again later.');
+          // alert('An error occurred. Please try again later.');
+          this.toastr.error('An error occurred. Please try again later.');
         },
         complete: () => {
           this.isSubmitting = false; // Reset submission flag after request completes

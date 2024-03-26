@@ -22,6 +22,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserPlatformLocation } from '@angular/common';
 import { ɵBrowserAnimationBuilder } from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AccountComponent,
     TransactionHistoryComponent,
     TransactionviewComponent,
+    LogoutComponent,
 
   ],
   imports: [

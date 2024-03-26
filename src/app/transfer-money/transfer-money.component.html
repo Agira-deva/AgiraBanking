@@ -26,6 +26,7 @@
       </div>
     </div>
     <button class="button" type="submit" [disabled]="!transferForm.valid">Transfer</button>
+    <app-logout class="logout-button"></app-logout>
   </form>
   <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
 </div>

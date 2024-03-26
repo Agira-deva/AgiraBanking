@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Transaction } from '../Interface/history';
 import { TransactionviewService } from '../service/transactionview.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-transactionview',
@@ -13,7 +14,8 @@ export class TransactionviewComponent implements OnInit {
   startDate: string = '';
   endDate: string = '';
 
-  constructor(private transactionService: TransactionviewService) {}
+
+  constructor(private transactionService: TransactionviewService,private toastr: ToastrService) {}
 
   ngOnInit(): void {
     const accountNumberFromStorage = sessionStorage.getItem('accountNumber');
@@ -39,9 +41,11 @@ export class TransactionviewComponent implements OnInit {
                 new Date(b.createdAt).getTime() -
                 new Date(a.createdAt).getTime()
             );
+            this,this.toastr.success("Transactions fetched successfully");
           },
           (error: any) => {
             console.error('Error fetching transactions:', error);
+            this.toastr.error('Error fetching transactions:', error);
           }
         );
     }

@@ -6,10 +6,9 @@
     'background-size': 'cover'
   }"
 >
-
-<div class="overlay"></div>
+  <div class="overlay"></div>
   <div class="transaction-history-container">
-    <h2>Transaction History</h2>
+    <h2>Transaction Pdf </h2>
     <div class="filter-section">
       <label for="startDate">Start Date:</label>
       <input
@@ -21,6 +20,8 @@
       <label for="endDate">End Date:</label>
       <input type="date" id="endDate" name="endDate" [(ngModel)]="endDate" />
       <button (click)="fetchTransactions()">Filter</button>
+      <app-logout class="logout-button" ></app-logout>
     </div>
   </div>
+
 </div>

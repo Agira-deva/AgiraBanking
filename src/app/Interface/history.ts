@@ -1,8 +1,9 @@
 export interface Transaction {
 [x: string]: any;
-  id: number;
+transactionId: number;
   transactionType: string;
-  accountNumber: string;
+  fromAccount: string;
+  toAccountNumber:String;
   amount: number;
   createdAt: Date;
   status: string;

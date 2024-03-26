@@ -20,6 +20,7 @@
       <label for="endDate">End Date:</label>
       <input type="date" id="endDate" name="endDate" [(ngModel)]="endDate" />
       <button (click)="fetchTransactions()">Filter</button>
+      <app-logout class="logout-button"></app-logout>
     </div>
     <div *ngIf="transactions.length > 0" class="transaction-table">
       <table>
@@ -35,9 +36,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let transaction of transactions">
-            <td>{{ transaction.accountNumber }}</td>
+            <td>{{ transaction.toAccountNumber }}</td>
             <td>{{ transaction.createdAt }}</td>
-            <td>{{ transaction.id }}</td>
+            <td>{{ transaction.transactionId }}</td>
             <td>{{ transaction.transactionType }}</td>
             <td>{{ transaction.amount }}</td>
             <td>{{ transaction.status }}</td>

@@ -13,6 +13,7 @@ export class AuthService {
   userLogin(data: any) {
     return this.httpClient.post('http://localhost:8080/api/user/login', data);
   }
+
   isLoggedIn(): boolean {
     return sessionStorage.getItem('token') != null;
   }
@@ -30,4 +31,5 @@ export class AuthService {
     this.token = null;
     sessionStorage.removeItem('token');
   }
+  
 }
