@@ -6,7 +6,7 @@
   <div *ngIf="balanceInfo" class="balance-info">
     <p><strong>Account Number:</strong> {{ balanceInfo.accountNumber }}</p>
     <p><strong>Account Name:</strong> {{ balanceInfo.accountName }}</p>
-    <p><strong>Account Balance:</strong> ${{ balanceInfo.accountBalance }}</p>
+    <p><strong>Account Balance:</strong> Rs.{{ balanceInfo.accountBalance }}</p>
     <div class="button-container">
    <button> <a [routerLink]="'/transferview'">Transaction History</a></button>
    <button><a [routerLink]="'/transfermoney'">Transfer Money</a></button>

@@ -38,7 +38,7 @@ export class TransferMoneyComponent implements OnInit {
         (response: any) => {
           console.log('Transfer successful:', response);
           this.toastr.success('Transfer successful');
-          this.transferForm.reset(); // Clear the transfer form after successful transfer
+          this.transferForm.reset(); 
         },
         (error: { error: { message: string } }) => {
           this.toastr.error("n error occurred during the transfer.")

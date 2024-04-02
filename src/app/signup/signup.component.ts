@@ -12,7 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable({ providedIn: 'root' })
 export class SignupComponent {
   reactiveForms: FormGroup;
-  isSubmitting = false; // Flag to track form submission status
+  isSubmitting = false;
+  showPassword = false;
 
   constructor(
     private router: Router,
@@ -21,34 +22,34 @@ export class SignupComponent {
     private toastr: ToastrService
   ) {
     this.reactiveForms = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10), Validators.pattern('^[a-zA-Z]*$')]],
+      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10), Validators.pattern('^[a-zA-Z]*$')]],
       otherName: [''],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20),
+                     Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$')]],
       gender: ['', Validators.required],
-      address: [''],
-      stateOfOrigin: [''],
-      phoneNumber: ['', Validators.required],
-      alternativePhoneNumber: [''],
+      address: ['', Validators.required],  // Corrected form control name
+      stateOfOrigin: ['', Validators.required],  // Corrected form control name
+      phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^\\d{10}$')]],
+      alternativePhoneNumber: ['', [Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^\\d{10}$')]]
     });
   }
 
   onSubmit(): void {
     if (this.isSubmitting) {
-      return; // Prevent multiple form submissions
+      return;
     }
 
     this.isSubmitting = true;
     this.reactiveForms.markAllAsTouched();
     this.http
-      .post<any>('http://localhost:8080/api/user/', this.reactiveForms.value)
+      .post<any>('http://localhost:8080/api/', this.reactiveForms.value)
       .subscribe({
         next: (res: any) => {
           console.log(res);
           if (res.responseCode === 'Account has been successfully created') {
-            // alert('Account created successfully');
-            this.toastr.success("Account created successfully")
+            this.toastr.success('Account created successfully');
             this.router.navigateByUrl('/login');
           } else {
             alert(res.responseCode);
@@ -57,12 +58,15 @@ export class SignupComponent {
         },
         error: (err: any) => {
           console.error('An error occurred:', err);
-          // alert('An error occurred. Please try again later.');
           this.toastr.error('An error occurred. Please try again later.');
         },
         complete: () => {
-          this.isSubmitting = false; // Reset submission flag after request completes
-        }
+          this.isSubmitting = false;
+        },
       });
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }

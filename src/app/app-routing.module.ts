@@ -30,7 +30,6 @@ const routes: Routes = [
     path: 'signup',
     pathMatch: 'full',
     component: SignupComponent,
-    // canActivate: [AuthGuard],
   },
   {
     path: 'account',

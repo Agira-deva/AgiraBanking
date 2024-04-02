@@ -20,7 +20,7 @@
       <label for="endDate">End Date:</label>
       <input type="date" id="endDate" name="endDate" [(ngModel)]="endDate" />
       <button (click)="fetchTransactions()">Filter</button>
-      <app-logout class="logout-button"></app-logout>
+       <app-logout class="logout-button"></app-logout>
     </div>
     <div *ngIf="transactions.length > 0" class="transaction-table">
       <table>

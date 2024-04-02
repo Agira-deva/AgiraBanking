@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
+  user: any;
   private token: string | null = null;
 
   constructor(private httpClient: HttpClient) {}
@@ -31,5 +32,7 @@ export class AuthService {
     this.token = null;
     sessionStorage.removeItem('token');
   }
-  
+  getCurrentUser() {
+    this.user = sessionStorage.getItem('role');
+  }
 }

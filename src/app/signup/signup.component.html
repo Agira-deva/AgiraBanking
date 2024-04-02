@@ -17,9 +17,13 @@
             <label for="firstName" class="cols-sm-2 control-label"
               >First Name</label
             >
-            <div class="text-danger" *ngIf="reactiveForms.controls['firstName'].invalid && (reactiveForms.controls['firstName'].touched)">
-
-</div>
+            <div
+              class="text-danger"
+              *ngIf="
+                reactiveForms.controls['firstName'].invalid &&
+                reactiveForms.controls['firstName'].touched
+              "
+            ></div>
 
             <div class="cols-sm-10">
               <div class="input-group">
@@ -30,6 +34,7 @@
                   type="text"
                   class="form-control"
                   formControlName="firstName"
+                  placeholder="Enter your first name"
                   required="required"
                 />
               </div>
@@ -74,26 +79,22 @@
               </div>
             </div>
           </div>
-
           <div class="form-group">
-            <label for="lastName" class="cols-sm-2 control-label"
-              >Address</label
-            >
+            <label for="address" class="cols-sm-2 control-label">Address</label>
             <div class="cols-sm-10">
               <div class="input-group">
-                <span class="input-group-addon"
-                  ><i class="fa fa-user fa" aria-hidden="true"></i
-                ></span>
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                 <input
                   type="text"
                   class="form-control"
-                  formControlName="lastName"
-                  placeholder="Enter your last name"
+                  formControlName="address"
+                  placeholder="Enter your Address"
                   required="required"
                 />
               </div>
             </div>
           </div>
+
 
           <div class="form-group">
             <label for="Stateoforigin" class="cols-sm-2 control-label"
@@ -101,10 +102,10 @@
             >
             <div class="cols-sm-10">
               <select
-                id="gender"
+                id="stateOfOrigin"
                 class="form-control"
                 name="gender"
-                formControlName="Stateoforigin"
+                formControlName="stateOfOrigin"
                 required
               >
                 <option value="" disabled selected>Select your state</option>
@@ -186,7 +187,7 @@
                   ><i class="fa fa-lock fa-lg" aria-hidden="true"></i
                 ></span>
                 <input
-                  type="password"
+                  type="{{ showPassword ? 'text' : 'password' }}"
                   class="form-control"
                   formControlName="password"
                   placeholder="Enter your Password"
@@ -195,7 +196,11 @@
               </div>
               <div class="checkbox">
                 <label>
-                  <input id="showPassword" type="checkbox" />Show Password
+                  <input
+                    id="showPassword"
+                    type="checkbox"
+                    (change)="togglePasswordVisibility()"
+                  />Show Password
                 </label>
               </div>
             </div>
@@ -239,12 +244,8 @@
             </div>
           </div>
 
-          <!-- <div class="form-group ">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button" (click)="onSignup"><a [routerLink]="'/login'" class="anc">Sign up!</a></button>
-                </div> -->
-
           <button
-            type="submit" [disabled]="!reactiveForms.valid"
+            type="submit"
             class="btn btn-primary btn-lg btn-block login-button"
             (click)="onSubmit()"
           >

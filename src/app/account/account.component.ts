@@ -27,7 +27,6 @@ export class AccountComponent {
         },
         (error: { error: { message: string } }) => {
           this.toastr.error("An unexpected error occurred while fetching balance.");
-          // this.errorMessage =  'An unexpected error occurred while fetching balance.';
           this.balanceInfo = null;
         }
       );

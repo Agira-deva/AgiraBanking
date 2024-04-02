@@ -36,7 +36,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       EmailId: ['', [Validators.required, Validators.email]],
-      Password: ['', Validators.required],
+      Password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(
+            /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[a-z]).{8,}$/
+          ),
+        ],
+      ],
     });
   }
 
@@ -48,14 +57,13 @@ export class LoginComponent implements OnInit {
         if (res.responseCode === 'Login Success') {
           this.responsedata = res.responseMessage;
           sessionStorage.setItem('token', this.responsedata);
+          // sessionStorage.setItem('roles', res.roles.toString());
           sessionStorage.setItem(
             'accountNumber',
             res.accountInfo.accountNumber
           );
           console.log(this.responsedata);
-          this.toastr.success(
-            "login success"
-          );
+          this.toastr.success('login success');
           this.router.navigate(['/home']);
         } else {
           this.toastr.error('Invalid Credentials');
@@ -64,18 +72,3 @@ export class LoginComponent implements OnInit {
     }
   }
 }
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class Login {
-//   public getToken() {
-//     return localStorage.getItem('token');
-//   }
-//   EmailId: string;
-//   Password: string;
-//   constructor() {
-//     this.EmailId = '';
-//     this.Password = '';
-//   }
-// }
